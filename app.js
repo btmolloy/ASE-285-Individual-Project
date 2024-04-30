@@ -4,19 +4,23 @@ const { addEntriesFromFile, authenticateUser } = require('./src/commands');
 
 const argv = yargs(hideBin(process.argv)).argv;
 
-if (argv.a && argv.t) {
-  // Both add and test
-  addEntriesFromFile(argv.a).then(() => {
-    const [email, password] = argv.t.split(' ');
-    authenticateUser(email, password);
-  });
-} else if (argv.a) {
-  // Only add entries from file
-  addEntriesFromFile(argv.a);
-} else if (argv.t) {
-  // Only test authentication
-  const [email, password] = argv.t.split(' ');
-  authenticateUser(email, password);
-} else {
-  console.log('No valid command found. Use -a to add entries or -t to test login.');
+async function handleCommands() {
+    if (argv.a && argv.t) {
+        // Both add and test
+        await addEntriesFromFile(argv.a);
+        const [email, password] = argv.t.split(' ');
+        await authenticateUser(email, password);
+    } else if (argv.a) {
+        // Only add entries from file
+        await addEntriesFromFile(argv.a);
+    } else if (argv.t) {
+        // Only test authentication
+        const [email, password] = argv.t.split(' ');
+        await authenticateUser(email, password);
+    } else {
+        console.log('No valid command found. Use -a to add entries or -t to test login.');
+    }
+    process.exit();
 }
+
+handleCommands();
