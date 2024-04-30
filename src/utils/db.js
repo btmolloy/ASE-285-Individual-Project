@@ -6,7 +6,9 @@ mongoose.connect(uri);
 
 const userSchema = new mongoose.Schema({
   email: String,
-  passwordHash: String
+  passwordHash: String,
+  salt: String
+
 });
 
 const User = mongoose.model('User', userSchema);

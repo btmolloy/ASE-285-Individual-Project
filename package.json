@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Ben Molloy",
   "license": "ISC",
@@ -15,5 +15,12 @@
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.3",
     "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^9.2.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
