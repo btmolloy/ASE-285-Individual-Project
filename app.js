@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const dotenv = require("dotenv");
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 console.log("Connected to db!");
 
 const userSchema = new mongoose.Schema({
@@ -25,18 +25,24 @@ function hashPassword(password, salt = 'a-secure-salt') {
 
 function encryptPasswordsAndStore() {
   const fs = require('fs');
-  const lines = fs.readFileSync('password.txt', 'utf8').split('\n');
-  lines.forEach(line => {
+  const lines = fs.readFileSync('password.txt', 'utf8').split('\r\n');  // Adjusted for Windows line endings
+  lines.forEach(async (line) => {  // Use async here
+    if (line.trim() === '') return; // Skip empty lines
     const [email, password] = line.split(':');
+    if (!email || !password) return; // Skip lines without proper email:password format
     const passwordHash = hashPassword(password);
     const user = new User({ email, passwordHash });
-    user.save(err => {
-      if (err) console.log(err);
-    });
+    try {
+      await user.save();  // Use await instead of a callback
+      console.log(`User ${email} saved successfully.`);
+    } catch (err) {
+      console.error('Error saving user:', err);
+    }
     // Write to encrypted file
     fs.appendFileSync('password.enc.txt', `${email}:${passwordHash}\n`);
   });
 }
+
 
 function authenticateUser(email, password) {
   const passwordHash = hashPassword(password);
@@ -54,4 +60,4 @@ rl.question('Enter email and password: ', answer => {
 });
 
 // Optionally, you can call this function once to initialize your database
- //encryptPasswordsAndStore();
+// encryptPasswordsAndStore();
