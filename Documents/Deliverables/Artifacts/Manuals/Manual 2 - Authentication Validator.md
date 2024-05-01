@@ -16,6 +16,7 @@ To authenticate a user, you need to run a command in your terminal. Here's how:
 3. Execute the following command:
 
 `node app.js -t "user@example.com myPassword"`
+
 Replace user@example.com with the user's email and myPassword with the user's password.
 
 ### Step 3: Understand the Output
@@ -25,6 +26,5 @@ After running the command, the application will process the authentication by:
 - Comparing it with the encrypted password stored in the database.
 
 The terminal will then display the result:
-
-- true if the email and password match the encrypted credentials in the database, indicating that the authentication was successful.
-- false if there is no match, the email does not exist, the password is incorrect, or if the password field was left blank. This ensures that unauthorized access is prevented.
+- `true` if the email and password match the encrypted credentials in the database, indicating that the authentication was successful.
+- `false` if there is no match, the email does not exist, the password is incorrect, or if the password field was left blank. This ensures that unauthorized access is prevented.
