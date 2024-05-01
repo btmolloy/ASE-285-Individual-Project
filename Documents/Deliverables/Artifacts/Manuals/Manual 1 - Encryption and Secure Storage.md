@@ -29,5 +29,5 @@ The application will encrypt the passwords, generate a unique salt for each, and
 Upon successful encryption and storage, you will see a confirmation message in the terminal for each user added, and a final message saying "All entries added successfully"
 
 #### Notes:
-Make sure your text file format is correct to avoid errors.
-The passwords are encrypted using a secure hash algorithm, enhancing their security.
+- Make sure your text file format is correct to avoid errors.
+- The passwords are encrypted using a secure hash algorithm, enhancing their security.
