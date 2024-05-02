@@ -5,3 +5,4 @@ _config.js
 .env
 cloc-2.00.exe
 password_files/
+out/linecounter.txt

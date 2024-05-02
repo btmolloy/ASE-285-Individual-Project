@@ -20,7 +20,6 @@ describe('Authentication Process', () => {
     });
 
     afterEach(() => {
-        // Restore the original implementations
         consoleLogSpy.mockRestore();
         consoleErrorSpy.mockRestore();
     });
@@ -79,7 +78,7 @@ describe('Authentication Process', () => {
 
         User.findOne.mockResolvedValue({
             email,
-            passwordHash: 'someHashWithoutSalt' // Salt intentionally missing
+            passwordHash: 'someHashWithoutSalt' 
         });
 
         await authenticateUser(email, password);

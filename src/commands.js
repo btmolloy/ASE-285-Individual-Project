@@ -11,7 +11,7 @@ async function addEntriesFromFile(filename) {
         const data = fs.readFileSync(filePath, 'utf8');
         const lines = data.split('\r\n');
         const outputFilePath = path.join(PASSWORD_DIR, 'password.enc.txt');
-        fs.writeFileSync(outputFilePath, '');  // Clear existing contents
+        fs.writeFileSync(outputFilePath, '');  
         for (const line of lines) {
             if (!line) continue;
             const [email, password] = line.split(':');
@@ -36,7 +36,6 @@ async function authenticateUser(email, password) {
           console.log(false);
           return;
       }
-      // Ensure the salt is defined and logging for debugging
       if (!user.salt) {
           console.error('No salt defined for user:', email);
           console.log(false);

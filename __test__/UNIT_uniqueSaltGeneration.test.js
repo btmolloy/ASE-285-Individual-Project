@@ -1,4 +1,3 @@
-// Assuming you modify hashPassword to include salt generation
 const { generateSalt, hashPassword } = require('../src/utils/encrypt');
 
 describe('Unique Salt Generation', () => {

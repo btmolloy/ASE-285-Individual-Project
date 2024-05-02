@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const { User } = require('../src/utils/db'); // adjust the path as needed
+const { User } = require('../src/utils/db'); 
 
 describe('Database Write', () => {
   let mongoServer;
