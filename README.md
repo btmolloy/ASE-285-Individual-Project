@@ -1,4 +1,4 @@
-# Individual Project Organization
+# Individual Project
 ## Features
 1) Encryption and Secure Storage for Login Credentials
 
